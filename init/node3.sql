@@ -1,0 +1,5 @@
+CREATE TABLE audit_log(
+    id SERIAL PRIMARY KEY,
+    event TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

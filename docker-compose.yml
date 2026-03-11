@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+
+  postgres1:
+    image: postgres:15
+    container_name: pg_node1
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: node1db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./init/node1.sql:/docker-entrypoint-initdb.d/init.sql
+
+  postgres2:
+    image: postgres:15
+    container_name: pg_node2
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: node2db
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./init/node2.sql:/docker-entrypoint-initdb.d/init.sql
+
+  postgres3:
+    image: postgres:15
+    container_name: pg_node3
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: node3db
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./init/node3.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@lab.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
